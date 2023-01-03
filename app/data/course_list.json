@@ -19,5 +19,12 @@
         "price": 8,
         "available": true,
         "level": "Advanced"
+    },
+    {
+        "title": "grwgwlgjowg",
+        "description": "gwjggnwelg",
+        "price": 2,
+        "available": true,
+        "level": "Intermediate"
     }
 ]
