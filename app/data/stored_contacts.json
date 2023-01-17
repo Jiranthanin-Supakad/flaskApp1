@@ -1,0 +1,38 @@
+[
+    {
+        "firstname": "สมชาย",
+        "lastname": "ทรงแบด",
+        "phone": "081 123 4567",
+        "postcode": "50270",
+        "subdist": "บ้านทับ",
+        "district": "แม่แจ่ม",
+        "province": "เชียงใหม่"
+    },
+    {
+        "firstname": "สมชาย",
+        "lastname": "ทรงอย่างแบด",
+        "phone": "083434343",
+        "postcode": "51003",
+        "subdist": "ทากาศ",
+        "district": "แม่ทา",
+        "province": "ลำพูน"
+    },
+    {
+        "firstname": "มานะ",
+        "lastname": "พยายาม",
+        "phone": "08539835",
+        "postcode": "50200",
+        "subdist": "พระสิงห์",
+        "district": "เมืองเชียงใหม่",
+        "province": "เชียงใหม่"
+    },
+    {
+        "firstname": "มานี",
+        "lastname": "เป็นลูกแมวเหมียว",
+        "phone": "08539835",
+        "postcode": "50170",
+        "subdist": "ทุ่งข้าวพวง",
+        "district": "เชียงดาว",
+        "province": "เชียงใหม่"
+    }
+]
