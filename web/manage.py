@@ -2,6 +2,7 @@ from flask.cli import FlaskGroup
 
 from app import app, db
 from app.models.contact import Contact
+from app.models.contactBlog import BlogEntry
 
 
 cli = FlaskGroup(app)
@@ -18,6 +19,8 @@ def create_db():
 def seed_db():
     db.session.add(
         Contact(firstname='สมชาย', lastname='ทรงแบด', phone='081-111-1111'))
+    db.session.add(
+        BlogEntry(name='สมชาย ทรงแบด', message='วันนี้กินไรดีอ่ะ', email='somchan@gmail.com'))
     db.session.commit()
 
 
