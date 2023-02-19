@@ -100,8 +100,8 @@
 
     const data = { "data": contact_data }
     var Createblog = ({ date_created, date_updated, email, id, message, name }) => {
-    const db_datetimecreate = new Date(date_created + " UTC").toLocaleString("en-GB")
-    const db_datetimeupdate = new Date(date_updated + " UTC").toLocaleString("en-GB")
+      const db_datetimecreate = new Date(date_created + " UTC").toLocaleString("en-GB")
+      const db_datetimeupdate = new Date(date_updated + " UTC").toLocaleString("en-GB")
       return `
     <div class="container">
       <div class="row">
@@ -118,12 +118,12 @@
                   <span class="tweet-username" id="${id}name">${name}</span>
                   <span class="tweet-useremail text-muted" id="${id}email">${email}</span>
                   <br>
-                  <span class="tweet-age text-muted">${db_datetimecreate}</span>
-                  <br>
-                  <span class="tweet-age text-muted">${db_datetimeupdate}</span>
                 </div>
               </div>
               <div class="tweet-text" id="${id}message">${message}</div>
+              <span class="tweet-age text-muted">create : ${db_datetimecreate}</span>
+              <br>
+              <span class="tweet-age text-muted">update : ${db_datetimeupdate}</span>
               <div class="row text-muted">
                 &nbsp; &nbsp; 
                 <button id="edit" type="edit_btn" value="${id}" onclick="prePopulateForm(this.value)">
@@ -158,9 +158,9 @@
 
   function prePopulateForm(id) {
     $('#addcontacts')[0].reset();
-    $('#name').val(document.getElementById(id+"name").innerHTML);
-    $('#email').val(document.getElementById(id+"email").innerHTML);
-    $('#message').val(document.getElementById(id+"message").innerHTML);
+    $('#name').val(document.getElementById(id + "name").innerHTML);
+    $('#email').val(document.getElementById(id + "email").innerHTML);
+    $('#message').val(document.getElementById(id + "message").innerHTML);
     $('#entryid').val(id);
   }
 
