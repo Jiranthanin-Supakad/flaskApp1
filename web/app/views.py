@@ -157,7 +157,23 @@ def lab11_db_contacts():
 
 
     blog_entries = list(map(lambda x: x.to_dict(), db_contacts))
+    blog_entries.sort(key = lambda x:x['id'])
     app.logger.debug("DB Contacts: " + str(blog_entries))
 
 
     return jsonify(blog_entries)
+
+@app.route('/lab11/remove_contact', methods=('GET', 'POST'))
+def lab11_remove_contacts():
+    app.logger.debug("LAB11 - REMOVE")
+    if request.method == 'POST':
+        result = request.form.to_dict()
+        id_ = result.get('id', '')
+        try:
+            contact = BlogEntry.query.get(id_)
+            db.session.delete(contact)
+            db.session.commit()
+        except Exception as ex:
+            app.logger.debug(ex)
+            raise
+    return lab11_db_contacts()

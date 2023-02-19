@@ -19,121 +19,218 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-md navbar-light">
-      <div class="container">
-        <div class="navbar-nav">
-          <a class="nav-item nav-link" href="#"><span class="oi oi-home"></span> Home</a>
-          <a class="nav-item nav-link" href="#"><span class="oi oi-bolt"></span> Moments</a>
-          <a class="nav-item nav-link" href="#"><span class="oi oi-bell"></span> Notifications</a>
-          <a class="nav-item nav-link" href="#"><span class="oi oi-envelope-open"></span> Messages</a>
-        </div>
-            <form class="form-inline">
-              <input class="form-control" id="nav-search" type="search" placeholder="Search Twitter"> &nbsp;
-              <img class="tw-user-small rounded-circle" src="static/img/tweeterUserSmall.jpeg"> &nbsp;
-              <button class="btn" id="nav-tweet-btn" type="submit1">Tweet</button>
-            </form>
+  <!--ส่วนtab bar-->
+  <nav class="navbar navbar-expand-md navbar-light">
+    <div class="container">
+
+      <div class="navbar-nav">
+        <a class="nav-item nav-link" href="#"><span class="oi oi-home"></span> Home</a>
+        <a class="nav-item nav-link" href="#"><span class="oi oi-bolt"></span> Moments</a>
+        <a class="nav-item nav-link" href="#"><span class="oi oi-bell"></span> Notifications</a>
+        <a class="nav-item nav-link" href="#"><span class="oi oi-envelope-open"></span> Messages</a>
       </div>
-    </nav>
-    <!--ส่วนของกล่อง name email message-->
-    <div id="information"class="container1" >
-        <header>Create Post</header>
-        <form id="addcontacts">
-              <div class="content">
-                  <img class="rounded-circle" src="static/img/tweeterUserSmall.jpeg"> &nbsp;
-                  <input type="text" id="name" name="name" placeholder="Please enter your name.." required>       
+      <form class="form-inline">
+        <input class="form-control" id="nav-search" type="search" placeholder="Search Twitter"> &nbsp;
+        <img class="tw-user-small rounded-circle" src="static/img/tweeterUserSmall.jpeg"> &nbsp;
+        <button class="btn" id="nav-tweet-btn" type="submit1">Tweet</button>
+      </form>
+    </div>
+  </nav>
+
+  <!--ส่วนของกล่อง name email message-->
+  <div class="container">
+    <div class="row">
+      <div id="left_3" class="col-md-3">
+        <div class="content-box">Account details</div>
+        <div class="content-box">Trends</div>
+      </div>
+      <div id="center_6" class="col-md-6">
+        <div class="content-box">
+          <div class="new-tweet-row">
+            <header>Create Post</header>
+            <div class="row">
+              <div class="col-md-3">
+                <img src="static/img/tweeterUserSmall.jpeg" class="tw-user-medium rounded-circle mx-auto d-block">
               </div>
-                <input type="textarea" id="message" name="message" placeholder="What's on your mind.." spellcheck="false" required>   
-                <input type="email" id="email" name="email" placeholder="Please enter your email.." required>   
-                <input type="hidden" id="entryid" name="id" value="">
-                <input type="submit" name="submit" value="Post">
-                <button id="clear_form" type="button">Clear</button>
-        </form>
-    </div>
-    <!--ส่วนของfeed ข่าว-->
-    <div id="feed" class="tweet">
-      <div class="row">
-        <div class="text-center">
-          <img class="rounded-circle" src="static/img/tweeterUserSmall.jpeg">
+              <div class="col-md-9">
+                <form id="addcontacts">
+                  <input type="text" id="name" name="name" placeholder="Please enter your name.." maxlength="50"
+                    required>
+                  <input type="textarea" id="message" name="message" placeholder="What's on your mind.."
+                    spellcheck="false" maxlength="280" required>
+                  <input type="email" id="email" name="email" placeholder="Please enter your email.." maxlength="50"
+                    required>
+                  <input type="hidden" id="entryid" name="id" value="">
+                  <input type="submit" id="post" name="submit" value="Post">
+                  <button id="clear_form" type="button">Clear</button>
+                </form>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="tweet-info">
-          <div id="feednews">
-            <thead>
-              <tr>
-                <th data-field="name">
-                  <span class="text-success">
-                  </span>
-                </th>
-                <th data-field="email">
-                  <span class="text-success">
-                  </span>
-                </th>
-              </tr>
-            </thead>
-          </div>      
-          <!--<div class="row text-muted">
-            <div class="col-md-2"><span class="oi oi-bullhorn"></span></div>
-            <div class="col-md-2"><span class="oi oi-loop-circular"></span></div>
-            <div class="col-md-2"><span class="oi oi-heart"></span></div>
-            <div class="col-md-2"><span class="oi oi-envelope-open"></span></div>
-          </div>-->
+      </div>
+      <div id="right_3" class="col-md-3">
+        <div class="content-box">Who to follow</div>
+      </div>
+    </div>
+  </div>
+
+  <!--ส่วนของfeed ข่าว-->
+  <div id="contact_display"></div>
+
+</body>
+<!-- Optional JavaScript -->
+<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+  integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+  integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<script>
+  $(document).ready(function () {
+    (function () {
+      $.getJSON("lab11/contacts", populate_container);
+    })();
+  });
+
+  function populate_container(contact_data) {
+    var date = new Date();
+    var offset = date.getTimezoneOffset()
+
+    const data = { "data": contact_data }
+    var Createblog = ({ date_created, date_updated, email, id, message, name }) => {
+    const db_datetimecreate = new Date(date_created + " UTC").toLocaleString("en-GB")
+    const db_datetimeupdate = new Date(date_updated + " UTC").toLocaleString("en-GB")
+      return `
+    <div class="container">
+      <div class="row">
+        <div id="left_3" class="col-md-3"></div>
+        <div id="center_6" class="col-md-6">
+        <div class="tweet">
+          <div class="row">
+            <div class="col-md-2 text-center">
+              <img class="tw-user-medium rounded-circle" src="static/img/tweeterUserSmall.jpeg">
+            </div>
+            <div class="col-md-10">
+              <div class="row tweet-info">
+                <div class="col-md-auto">
+                  <span class="tweet-username" id="${id}name">${name}</span>
+                  <span class="tweet-useremail text-muted" id="${id}email">${email}</span>
+                  <br>
+                  <span class="tweet-age text-muted">${db_datetimecreate}</span>
+                  <br>
+                  <span class="tweet-age text-muted">${db_datetimeupdate}</span>
+                </div>
+              </div>
+              <div class="tweet-text" id="${id}message">${message}</div>
+              <div class="row text-muted">
+                &nbsp; &nbsp; 
+                <button id="edit" type="edit_btn" value="${id}" onclick="prePopulateForm(this.value)">
+                    <span class="oi oi-brush"></span>
+                  </button>
+                  &nbsp;
+                  <button id="remove" type="button1" value="${id}" onclick="removeItem(this.value)">
+                    <span class="oi oi-trash"></span>
+                  </button>
+              </div>
+            </div>
+          </div>
+        </div>
         </div>
         </div>
       </div>
-    </div>
-</body>
-  <!-- Optional JavaScript -->
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://unpkg.com/bootstrap-table@1.21.2/dist/bootstrap-table.min.js"></script>
-  <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    </div> `
+    }
 
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-    crossorigin="anonymous"></script>
-    <script>
-      $(document).ready(function () {
-        (function (data) {
-          $.getJSON("lab11/contacts", data);
-        })();
-      });
-
-      $("#addcontacts").submit(function (event) {
-      // prevent default html form submission action
-      event.preventDefault();
-
-
-      // pack the inputs into a dictionary
-      var formData = {};
-      $(":input").each(function () {
-        var key = $(this).attr('name');
-        var val = $(this).val();
-
-
-        if (key != 'submit') {
-          formData[key] = val;
-        }
-      });
-
-
-      var $form = $(this);
-      var url = $form.attr("action");
-
-
-      // make a POST call to the back end w/ a callback to refresh the table
-      $.post(url, formData, function (contact_data) {
-        clearForm();
-      });
+    let blog = data.data.map(Createblog);
+    blog.forEach((blog) => {
+      document.getElementById('contact_display').innerHTML = blog + document.getElementById('contact_display').innerHTML;
     });
-    
-    $("#clear_form").click(function () {
+
+  }
+
+  function refresh_table(contact_data) {
+    document.getElementById('contact_display').innerHTML = "";
+    document.getElementById('contact_display').addEventListener("load", populate_container(contact_data));
+
+  }
+
+  // const postform = document.querySelector('#contact_display')
+  // const titlename = document.getElementById('name')
+  // const titleemail = document.getElementById('email')
+  // const titlemessage = document.getElementById('message')
+  // postform.addEventListener('click', (e) => {
+  //   e.preventDefault();
+  //   let editbtn = e.target.id == '#edit';
+  //   const parent = e.target.parentElement;
+  //   let name = parent.querySelector(".tweet-username").textContent;
+  //   let email = parent.querySelector(".tweet-useremail").textContent;
+  //   let message = parent.querySelector(".tweet-text").textContent;
+
+  //   titlename.value = name;
+  //   titleemail.value = email;
+  //   titlemessage.value = message;
+  // })
+
+
+  function prePopulateForm(id) {
+    $('#addcontacts')[0].reset();
+    $('#name').val(document.getElementById(id+"name").innerHTML);
+    $('#email').val(document.getElementById(id+"email").innerHTML);
+    $('#message').val(document.getElementById(id+"message").innerHTML);
+    $('#entryid').val(id);
+  }
+
+  function removeItem(row) {
+    if (!confirm("Delete" + '?')) {
+      return false;
+    }
+    var url = "lab11/remove_contact"
+    var formData = { 'id': row };
+    $.post(url, formData, function (id) {
+      refresh_table(id);
+    });
+  }
+
+
+
+  $("#addcontacts").submit(function (event) {
+    // prevent default html form submission action
+    event.preventDefault();
+
+    // pack the inputs into a dictionary
+    var formData = {};
+    $(":input").each(function () {
+      var key = $(this).attr('name');
+      var val = $(this).val();
+
+
+      if (key != 'submit') {
+        formData[key] = val;
+      }
+    });
+
+
+    var $form = $(this);
+    var url = $form.attr("action");
+
+    // make a POST call to the back end w/ a callback to refresh the table
+    $.post(url, formData, function (contact_data) {
+      refresh_table(contact_data);
       clearForm();
     });
+  });
 
-    function clearForm() {
-      $('#addcontacts')[0].reset();
-      $('#entryid').val('');
-    }
-    </script>
+  function clearForm() {
+    $('#addcontacts')[0].reset();
+    $('#entryid').val('');
+  }
+
+  $("#clear_form").click(function () {
+    clearForm();
+  });
+
+</script>
+
 </html>
