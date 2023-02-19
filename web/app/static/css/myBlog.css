@@ -163,12 +163,12 @@ input[type=submit]:hover {
     border-radius: 50px; 
     font-size: 16px;
     font-weight: 500;
-    background: #ff4e4e;
+    background: #f9abab;
     color: #fff;
 }
 
 #remove:hover {
-    background: #da1d1d
+    background: #d06161
 }
 
 #edit{
@@ -179,11 +179,11 @@ input[type=submit]:hover {
     border-radius: 50px; 
     font-size: 16px;
     font-weight: 500;
-    background: #ff4e4e;
+    background: #f9abab;
     color: #fff;
 }
 #edit:hover {
-    background: #da1d1d
+    background: #d06161
 }
 
 .tweet-age {
