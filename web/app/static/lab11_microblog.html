@@ -156,24 +156,6 @@
 
   }
 
-  // const postform = document.querySelector('#contact_display')
-  // const titlename = document.getElementById('name')
-  // const titleemail = document.getElementById('email')
-  // const titlemessage = document.getElementById('message')
-  // postform.addEventListener('click', (e) => {
-  //   e.preventDefault();
-  //   let editbtn = e.target.id == '#edit';
-  //   const parent = e.target.parentElement;
-  //   let name = parent.querySelector(".tweet-username").textContent;
-  //   let email = parent.querySelector(".tweet-useremail").textContent;
-  //   let message = parent.querySelector(".tweet-text").textContent;
-
-  //   titlename.value = name;
-  //   titleemail.value = email;
-  //   titlemessage.value = message;
-  // })
-
-
   function prePopulateForm(id) {
     $('#addcontacts')[0].reset();
     $('#name').val(document.getElementById(id+"name").innerHTML);
