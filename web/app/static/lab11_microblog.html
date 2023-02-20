@@ -151,7 +151,7 @@
 
   }
 
-  function refresh_table(contact_data) {
+  function refresh_feed(contact_data) {
     document.getElementById('contact_display').innerHTML = "";
     document.getElementById('contact_display').addEventListener("load", populate_container(contact_data));
 
@@ -200,7 +200,7 @@
 
     // make a POST call to the back end w/ a callback to refresh the table
     $.post(url, formData, function (contact_data) {
-      refresh_table(contact_data);
+      refresh_feed(contact_data);
       clearForm();
     });
   });
