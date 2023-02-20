@@ -55,7 +55,7 @@ img.tw-user-medium {
     border-bottom: 1px solid #edf1f4;
     border-radius: 10px;
     margin-bottom: 10px;
-    overflow-y: auto;
+    overflow-x:auto;
 }
 
 
