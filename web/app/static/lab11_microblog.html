@@ -172,7 +172,7 @@
     var url = "lab11/remove_contact"
     var formData = { 'id': row };
     $.post(url, formData, function (id) {
-      refresh_table(id);
+        refresh_feed();
     });
   }
 
