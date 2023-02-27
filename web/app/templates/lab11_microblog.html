@@ -74,11 +74,11 @@
               <div class="col-md-9">
                 <form id="addcontacts">
                   <input type="text" id="name" name="name" placeholder="Please enter your name.." maxlength="50"
-                    onkeyup="fixName()" value="{{ current_user.name }}" required>
+                    onkeyup="fixName()" value="{{ current_user.name }}" disabled>
                   <input type="textarea" id="message" name="message" placeholder="What's on your mind.."
                     spellcheck="false" maxlength="280" required>
                   <input type="email" id="email" name="email" placeholder="Please enter your email.." maxlength="50"
-                    onkeyup="fixEmail()" value="{{ current_user.email }}" required>
+                    onkeyup="fixEmail()" value="{{ current_user.email }}" disabled>
                   <input type="hidden" id="entryid" name="id" value="">
                   <input type="submit" id="post" name="submit" value="Post">
                   <button id="clear_form" type="button">Clear</button>
