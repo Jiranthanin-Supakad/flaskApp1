@@ -305,36 +305,6 @@
     }
   }
 
-//   function gen_avatar_url(email, name) {
-//     const hash = CryptoJS.SHA256(email);
-//     const hashHex = hash.toString(CryptoJS.enc.Hex);
-//     const bgcolor = hashHex.slice(-6);
-//     const color = parseInt(bgcolor, 16) > 0xffffff / 2 ? '000' : 'fff';
-//     const initials = name.split(' ').map(word => word.charAt(0)).join('');
-//     const avatarUrl = `https://ui-avatars.com/api/?name=${initials}&background=${bgcolor}&color=${color}`;
-//     return avatarUrl;
-//     onload="this.src=gen_avatar_url('{{ current_user.email }}', '{{ current_user.name }}')"
-// }
-
-  
-  // function toggleView() {
-  //     if ($('#contact_display').attr('hidden')) {
-  //       $('#contact_display').removeAttr('hidden');
-  //       // $('#add-edit').attr('hidden', 'hidden');
-  //     } else {
-  //       $('#contact_display').attr('hidden', 'hidden');
-  //       // $('#add-edit').removeAttr('hidden');
-  //     }
-  //   }
-
-  // $("#post").click(function (id){
-  //   $.getJSON("lab11/contacts", function(id){
-  //     $("#name").val(document.getElementById(id + "name").innerHTML);
-  //     $("#email").val(document.getElementById(id + "email").innerHTML);
-  //   })
-  //   toggleView();
-  // })
-
   $("#clear_form").click(function () {
     clearForm();
   });
@@ -358,14 +328,6 @@
     window.location.href = "lab13/editprofile";
   })
   
-    // let inputBox = document.getElementById("post");
-    //   inputBox.addEventListener('click', (event)=>{
-    //   alert("you need to edit, Plesae return your password")
-    //     window.location.href = "lab13/login";
-    //   $('#name').val(document.getElementById("name").innerHTML);
-    //   $('#email').val(document.getElementById("email").innerHTML);
-    // });
-    
 </script>
 
 </html>
