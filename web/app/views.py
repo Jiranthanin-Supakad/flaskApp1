@@ -161,9 +161,7 @@ def lab11_microblog():
                 # contact = Contact.query.get(id_)
                 contact = PrivateContactblog.query.get(id_)
                 if contact.owner_id == current_user.id:
-                    validated_dict['owner_id'] = current_user.id
                     contact.update(**validated_dict)
-
 
             db.session.commit()
 
@@ -210,7 +208,7 @@ def lab11_remove_contacts():
         result = request.form.to_dict()
         id_ = result.get('id', '')
         try:
-            contact = PrivateContactBlog.query.get(id_)
+            contact = PrivateContactblog.query.get(id_)
             db.session.delete(contact)
             db.session.commit()
         except Exception as ex:
@@ -509,7 +507,7 @@ def lab13_editprofile():
 
         if not check_password_hash(current_user.password, password):
             flash('Incorrect password! Please try again')
-            return render_template('lab12/editprofile.html')
+            return render_template('lab13/editprofile.html')
 
         return redirect(url_for('lab13_edit'))
     return render_template('lab13/editprofile.html')

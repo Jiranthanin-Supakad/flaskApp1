@@ -26,6 +26,8 @@ def seed_db():
         PrivateContactblog(name='สมชาย ทรงแบด', message='วันนี้กินไรดีอ่ะ', email='somchan@gmail.com', owner_id=1))
     db.session.add(
         Contact(firstname='สมชาย', lastname='ทรงแบด', phone='081-111-1111'))
+    # db.session.add(
+    #     BlogEntry(name='สมชาย ทรงแบด', message='วันนี้กินไรดีอ่ะ', email='somchan@gmail.com'))
     db.session.commit()
 
 

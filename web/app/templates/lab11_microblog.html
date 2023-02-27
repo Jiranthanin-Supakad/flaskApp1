@@ -94,6 +94,7 @@
             <header>Create Post</header>
             <div class="row">
               <div class="col-md-3">
+                <img src="static/img/profile.jpeg" class="tw-user-medium rounded-circle mx-auto d-block">
               </div>
               <div class="col-md-9">
                 <form id="addcontacts">
@@ -179,7 +180,7 @@
       <div class="row text-muted" id="${id}_postbox">
         <div class="postbox">
           &nbsp; &nbsp;  &nbsp;
-          <button id="edit" type="edit_btn" value="${id}" onclick="prePopulateForm(this.value)">
+          <button id="edit" type="edit_btn" value="${id}" onclick="prePopulateForm(this.value),scrollToTop()">
             <span class="oi oi-brush"></span>
           </button>
           <button id="remove" type="button1" value="${id}" onclick="removeItem(this.value)">
@@ -303,6 +304,10 @@
     if (emailInput.value.length > 0) {
       emailInput.setAttribute("value", emailInput.value);
     }
+  }
+
+  function scrollToTop(){
+    window.scrollTo({top:0, behavior: 'smooth'});
   }
 
   $("#clear_form").click(function () {
