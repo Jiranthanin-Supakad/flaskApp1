@@ -3,7 +3,7 @@ from werkzeug.security import generate_password_hash
 from app import app, db
 from app.models.contact import Contact
 from app.models.contactBlog import BlogEntry
-from app.models.authuser import AuthUser, PrivateContact
+from app.models.authuser import AuthUser, PrivateContact , PrivateContactblog
 
 
 cli = FlaskGroup(app)
@@ -21,11 +21,11 @@ def seed_db():
     db.session.add(
         AuthUser(email="flask@204212", name='สมชาย ทรงแบด',password=generate_password_hash('1234',method='sha256'),avatar_url='https://ui-avatars.com/api/?name=\สมชาย+ทรงแบด&background=83ee03&color=fff'))
     db.session.add(
-       PrivateContact(firstname='ส้มโอ', lastname='โอเค',phone='081-111-1112', owner_id=1))
+        PrivateContact(firstname='ส้มโอ', lastname='โอเค',phone='081-111-1112', owner_id=1))
+    db.session.add(
+        PrivateContactblog(name='สมชาย ทรงแบด', message='วันนี้กินไรดีอ่ะ', email='somchan@gmail.com', owner_id=1))
     db.session.add(
         Contact(firstname='สมชาย', lastname='ทรงแบด', phone='081-111-1111'))
-    db.session.add(
-        BlogEntry(name='สมชาย ทรงแบด', message='วันนี้กินไรดีอ่ะ', email='somchan@gmail.com'))
     db.session.commit()
 
 

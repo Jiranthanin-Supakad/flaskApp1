@@ -19,6 +19,7 @@ img.tw-user-small {
 
 img.tw-user-medium {
     height: 50px;
+    margin-top: -5px;
 }
 
 
@@ -56,6 +57,7 @@ img.tw-user-medium {
     border-radius: 10px;
     margin-bottom: 10px;
     overflow-x:auto;
+    word-wrap: break-word;
 }
 
 
@@ -121,7 +123,7 @@ input[type=textarea]{
 
 
 input[type=submit]{
-    padding: 9px 18px;
+    padding: 7px 15px;
     border: none;
     outline: none;
     border-radius: 50px; 
@@ -129,7 +131,7 @@ input[type=submit]{
     font-weight: 500;
     background: #1da1f2;
     color: #fff;
-    margin-left: 10px;
+    margin-left: 5px;
 }
 
 
@@ -144,7 +146,7 @@ input[type=submit]:hover {
 }
 
 #clear_form{
-    padding: 9px 18px;
+    padding: 7px 15px;
     border: none;
     outline: none;
     border-radius: 50px; 
@@ -152,7 +154,6 @@ input[type=submit]:hover {
     font-weight: 500;
     background: #1da1f2;
     color: #fff;
-    margin-left: 10px;
 }
 
 #remove{
@@ -190,4 +191,61 @@ input[type=submit]:hover {
 
 .tweet-age {
     font-size: 14px;
+}
+
+.box3 button{
+    padding: 7px 14px;
+    border: none;
+    outline: none;
+    border-radius: 50px; 
+    font-size: 16px;
+    font-weight: 400;
+    background: #c97d7d;
+    color: #fff;
+}
+
+.box3 button:hover {
+    background: #fa6464
+}
+
+#mainprofile{
+    background-color: #ffffff;
+    height: 200px;
+    width: 250px;
+    border-radius: 20px;
+}
+
+img.profile{
+    height: 80px;
+    margin-left: 85px;
+    margin-top: 15px;
+}
+
+#mainprofile p{
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+i{
+    margin-left: 90px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+#edit_from{
+    padding: 7px 15px;
+    border: none;
+    outline: none;
+    border-radius: 50px; 
+    font-size: 16px;
+    font-weight: 500;
+    background: #1da1f2;
+    color: #fff;
+}
+
+#edit_from:hover{
+    background: #0d8bd9
 }

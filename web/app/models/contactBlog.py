@@ -14,7 +14,8 @@ class BlogEntry(db.Model, SerializerMixin):
     email = db.Column(db.String(50))
     date_created = db.Column(DateTime(timezone=True), server_default=func.now())
     date_updated = db.Column(DateTime, default=datetime.utcnow, onupdate=func.now())
-
+    # avatar_url = db.Column(db.String(100))
+    
     def __init__(self, name, message, email):
         self.name = name
         self.message = message
@@ -26,4 +27,3 @@ class BlogEntry(db.Model, SerializerMixin):
         self.name = name
         self.message = message
         self.email = email
-

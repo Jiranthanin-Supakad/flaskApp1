@@ -25,4 +25,8 @@ login_manager = LoginManager()
 login_manager.login_view = 'lab12_login'
 login_manager.init_app(app)
 
+login_manager = LoginManager()
+login_manager.login_view = 'lab13_login'
+login_manager.init_app(app)
+
 from app import views  # noqa

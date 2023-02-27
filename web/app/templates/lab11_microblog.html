@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="en">
+
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="static/css/open-iconic-bootstrap.css">
+  <link rel="stylesheet" href="static/css/myBlog.css">
+  <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.21.2/dist/bootstrap-table.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+    integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <title>Microblog</title>
+</head>
+
+<body>
+  <!--ส่วนtab bar-->
+  <nav class="navbar navbar-expand-md navbar-light">
+    <div class="container">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link" href="#"><span class="oi oi-home"></span> Home</a>
+        <a class="nav-item nav-link" href="#"><span class="oi oi-bolt"></span> Moments</a>
+        <a class="nav-item nav-link" href="#"><span class="oi oi-bell"></span> Notifications</a>
+        <a class="nav-item nav-link" href="#"><span class="oi oi-envelope-open"></span> Messages</a>
+      </div>
+      <form class="form-inline">
+        <input class="form-control" id="nav-search" type="search" placeholder="Search Twitter"> &nbsp;
+        <img class="tw-user-small rounded-circle" src="{{ current_user.avatar_url }}"> &nbsp;
+        <div class="box3">
+          {% if current_user.is_authenticated %}
+          <button id="logout" type="button">Logout</button>
+          {% else %}
+          <button id="login" type="button">Login</button>
+          {% endif %}
+        </div>
+      </form>
+    </div>
+  </nav>
+
+  <!--ส่วนของกล่อง name email message-->
+  <div class="container">
+    <div class="row">
+      <div id="left_3" class="col-md-3">
+        {% if current_user.is_authenticated %}
+        <!-- <div class="content-box" id="mainprofile">
+          <img src="{{ current_user.avatar_url }}" class="profile rounded-circle">
+          <p>{{ current_user.name }}</p>
+          <p class="text-muted"> {{ current_user.email }} </p> -->
+          <!-- <i class="fa fa-user-plus" aria-hidden="true"><p class="text-muted"> Friends </p></i>
+          <br>
+          <i class="fa fa-bookmark" aria-hidden="true"><p class="text-muted">Saved</p></i>
+          <br>
+          <i class="fa fa-television" aria-hidden="true"><p class="text-muted">Watch</p></i> -->
+        <!-- </div> -->
+        {% endif %}
+      </div>
+      <div id="center_6" class="col-md-6">
+        {% if current_user.is_authenticated %}
+        <div class="content-box">
+          <div class="new-tweet-row">
+            <header>Create Post</header>
+            <div class="row">
+              <div class="col-md-3">
+                <img src="{{ current_user.avatar_url }}" class="tw-user-medium rounded-circle mx-auto d-block">
+              </div>
+              <div class="col-md-9">
+                <form id="addcontacts">
+                  <input type="text" id="name" name="name" placeholder="Please enter your name.." maxlength="50"
+                    onkeyup="fixName()" value="{{ current_user.name }}" required>
+                  <input type="textarea" id="message" name="message" placeholder="What's on your mind.."
+                    spellcheck="false" maxlength="280" required>
+                  <input type="email" id="email" name="email" placeholder="Please enter your email.." maxlength="50"
+                    onkeyup="fixEmail()" value="{{ current_user.email }}" required>
+                  <input type="hidden" id="entryid" name="id" value="">
+                  <input type="submit" id="post" name="submit" value="Post">
+                  <button id="clear_form" type="button">Clear</button>
+                  <button id="edit_from" type="button">Edit</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% else %}
+        <div class="content-box">
+          <div class="new-tweet-row">
+            <header>Create Post</header>
+            <div class="row">
+              <div class="col-md-3">
+              </div>
+              <div class="col-md-9">
+                <form id="addcontacts">
+                  <input type="text" id="name" name="name" placeholder="Please enter your name.." maxlength="50"
+                    value="{{ current_user.name }}" required>
+                  <input type="textarea" id="message" name="message" placeholder="What's on your mind.."
+                    spellcheck="false" maxlength="280" required>
+                  <input type="email" id="email" name="email" placeholder="Please enter your email.." maxlength="50"
+                    value="{{ current_user.email }}" required>
+                  <input type="hidden" id="entryid" name="id" value="">
+                  <input type="submit" id="post1" name="submit" value="Post">
+                  <button id="clear_form" type="button">Clear</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+      </div>
+      <!-- <div id="right_3" class="col-md-3">
+        <div class="content-box" id="mainwho">Who to follow</div>
+      </div> -->
+    </div>
+  </div>
+
+
+  <!--ส่วนของfeed ข่าว-->
+  <div id="contact_display"></div>
+
+</body>
+
+<!-- Optional JavaScript -->
+<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+  integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+  integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<script>
+  $(document).ready(function () {
+    (function () {
+      $.getJSON("lab11/contacts", populate_container);
+    })();
+  });
+
+  let data_user = [];
+  //let data_content = [];
+
+  $.getJSON("/lab11/user", function (Array_data_user) {
+    Array_data_user.forEach(element => {
+      let dict = {};
+      dict['avatar_url'] = element.avatar_url;
+      dict['email'] = element.email;
+      dict['id'] = element.id;
+      dict['name'] = element.name;
+      dict['password'] = element.password;
+      dict['message'] = element.message;
+      data_user.push(dict);
+    });
+  });
+
+  function populate_container(contact_data) {
+    var date = new Date();
+    var offset = date.getTimezoneOffset()
+
+    const data = { "data": contact_data }
+    var Createblog = ({ date_created, date_updated, email, id, message, name, owner_id}) => {
+      const db_datetimecreate = new Date(date_created + " UTC").toLocaleString("en-GB")
+      const db_datetimeupdate = new Date(date_updated + " UTC").toLocaleString("en-GB") 
+      var image = "";
+      var nameuser = "";
+      var emailuser = "";
+      for (let i = 0; i <data_user.length; i++){
+        if (owner_id == data_user[i].id){
+            image = data_user[i].avatar_url;
+            nameuser = data_user[i].name;
+            emailuser = data_user[i].email;
+            break;
+        }
+      }
+      let postboxHtml = `
+      <div class="row text-muted" id="${id}_postbox">
+        <div class="postbox">
+          &nbsp; &nbsp;  &nbsp;
+          <button id="edit" type="edit_btn" value="${id}" onclick="prePopulateForm(this.value)">
+            <span class="oi oi-brush"></span>
+          </button>
+          <button id="remove" type="button1" value="${id}" onclick="removeItem(this.value)">
+            <span class="oi oi-trash"></span>
+          </button>
+        </div>
+      </div>`;
+
+    if (emailuser !== "{{ current_user.email }}") {
+      postboxHtml = "";
+    }
+    
+      return `
+    <div class="container">
+      <div class="row">
+        <div id="left_3" class="col-md-3"></div>
+        <div id="center_6" class="col-md-6">
+        <div class="tweet">
+          <div class="row">
+            <div class="col-md-2 text-center"> 
+              <img class="tw-user-medium rounded-circle" src="${image}">
+            </div>
+            <div class="col-md-10">
+              <div class="row tweet-info">
+                <div class="col-md-auto">
+                  <span class="tweet-username" id="${id}name">${nameuser}</span>
+                  <span class="tweet-useremail text-muted" id="${id}email">${emailuser}</span>
+                  <br>
+                </div>
+              </div>
+              <div class="tweet-text" id="${id}message">${message}</div>
+              <span class="tweet-age text-muted">create : ${db_datetimecreate}</span>
+              <br>
+              <span class="tweet-age text-muted">update : ${db_datetimeupdate}</span>
+              <br>
+              <div class="row text-muted">
+              ${postboxHtml}
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+        </div>
+      </div>
+    </div> `
+    }
+
+    let blog = data.data.map(Createblog);
+    blog.forEach((blog) => {
+      document.getElementById('contact_display').innerHTML = blog + document.getElementById('contact_display').innerHTML;
+    });
+
+  }
+
+
+  function refresh_feed(contact_data) {
+    document.getElementById('contact_display').innerHTML = "";
+    document.getElementById('contact_display').addEventListener("load", populate_container(contact_data));
+  }
+
+  function prePopulateForm(id) {
+    $('#addcontacts')[0].reset();
+    fixName();
+    fixEmail();
+    $('#message').val(document.getElementById(id + "message").innerHTML);
+    $('#entryid').val(id);
+  }
+
+  function removeItem(row) {
+    if (!confirm("Delete" + '?')) {
+      return false;
+    }
+    var url = "lab11/remove_contact"
+    var formData = { 'id': row };
+    $.post(url, formData, function (id) {
+      refresh_feed(id);
+    });
+  }
+
+  $("#addcontacts").submit(function (event) {
+    // prevent default html form submission action
+    event.preventDefault();
+
+    // pack the inputs into a dictionary
+    var formData = {};
+    $(":input").each(function () {
+      var key = $(this).attr('name');
+      var val = $(this).val();
+
+
+      if (key != 'submit') {
+        formData[key] = val;
+      }
+    });
+
+
+    var $form = $(this);
+    var url = $form.attr("action");
+
+    // make a POST call to the back end w/ a callback to refresh the table
+    $.post(url, formData, function (contact_data) {
+      refresh_feed(contact_data);
+      clearForm();
+    });
+  });
+
+  function clearForm() {
+    $('#addcontacts')[0].reset();
+    $('#entryid').val('');  
+  }
+
+  function fixName() {
+    var nameInput = document.getElementById("name");
+    if (nameInput.value.length > 0) {
+      nameInput.setAttribute("value", nameInput.value);
+    }
+  }
+
+  function fixEmail() {
+    var emailInput = document.getElementById("email");
+    if (emailInput.value.length > 0) {
+      emailInput.setAttribute("value", emailInput.value);
+    }
+  }
+
+//   function gen_avatar_url(email, name) {
+//     const hash = CryptoJS.SHA256(email);
+//     const hashHex = hash.toString(CryptoJS.enc.Hex);
+//     const bgcolor = hashHex.slice(-6);
+//     const color = parseInt(bgcolor, 16) > 0xffffff / 2 ? '000' : 'fff';
+//     const initials = name.split(' ').map(word => word.charAt(0)).join('');
+//     const avatarUrl = `https://ui-avatars.com/api/?name=${initials}&background=${bgcolor}&color=${color}`;
+//     return avatarUrl;
+//     onload="this.src=gen_avatar_url('{{ current_user.email }}', '{{ current_user.name }}')"
+// }
+
+  
+  // function toggleView() {
+  //     if ($('#contact_display').attr('hidden')) {
+  //       $('#contact_display').removeAttr('hidden');
+  //       // $('#add-edit').attr('hidden', 'hidden');
+  //     } else {
+  //       $('#contact_display').attr('hidden', 'hidden');
+  //       // $('#add-edit').removeAttr('hidden');
+  //     }
+  //   }
+
+  // $("#post").click(function (id){
+  //   $.getJSON("lab11/contacts", function(id){
+  //     $("#name").val(document.getElementById(id + "name").innerHTML);
+  //     $("#email").val(document.getElementById(id + "email").innerHTML);
+  //   })
+  //   toggleView();
+  // })
+
+  $("#clear_form").click(function () {
+    clearForm();
+  });
+
+  $("#logout").click(function () {
+    clearForm();
+    window.location.href = "lab13/logout";
+  });
+
+  $("#login").click(function () {
+    clearForm();
+    window.location.href = "lab13/login";
+  });
+
+  $("#post1").click(function() {
+    alert("please log in or signup to post")
+    window.location.href = "lab13/login";
+  })
+
+  $("#edit_from").click(function() {
+    window.location.href = "lab13/editprofile";
+  })
+  
+    // let inputBox = document.getElementById("post");
+    //   inputBox.addEventListener('click', (event)=>{
+    //   alert("you need to edit, Plesae return your password")
+    //     window.location.href = "lab13/login";
+    //   $('#name').val(document.getElementById("name").innerHTML);
+    //   $('#email').val(document.getElementById("email").innerHTML);
+    // });
+    
+</script>
+
+</html>
