@@ -203,6 +203,7 @@ def lab11_db_user():
     return jsonify(contact)
 
 @app.route('/lab11/remove_contact', methods=('GET', 'POST'))
+@login_required
 def lab11_remove_contacts():
     app.logger.debug("LAB11 - REMOVE")
     if request.method == 'POST':
@@ -210,9 +211,8 @@ def lab11_remove_contacts():
         id_ = result.get('id', '')
         try:
             contact = PrivateContactblog.query.get(id_)
-            if AuthUser.owner_id == current_user.id:
-                db.session.delete(contact)
-                db.session.commit()
+            db.session.delete(contact)
+            db.session.commit()
         except Exception as ex:
             app.logger.debug(ex)
             raise
@@ -384,7 +384,7 @@ def lab13_login():
         login_user(user, remember=remember)
         next_page = request.args.get('next')
         if not next_page or url_parse(next_page).netloc != '':
-            next_page = url_for('lab13_profile')
+            next_page = url_for('lab11_microblog')
         return redirect(next_page)
     return render_template('lab13/login.html')
 
@@ -455,7 +455,7 @@ def lab13_signup():
 @login_required
 def lab13_logout():
     logout_user()
-    return redirect(url_for('lab13_index'))
+    return redirect(url_for('lab13_login'))
 
 @app.route('/lab13/edit', methods=('GET', 'POST'))
 @login_required
@@ -490,9 +490,13 @@ def lab13_edit():
             email = validated_dict['email']
             name = validated_dict['name']
             # password = validated_dict['password']
-
+            user = AuthUser.query.filter_by(email=email).first()
             auth_users = AuthUser.query.get(current_user.id)
             # validated_dict['password'] = generate_password_hash(password, method='sha256')
+            if user and email != current_user.email:
+                flash('Email has been used!!')
+                return render_template('lab13/edit.html')
+
             avatar_url = gen_avatar_url(email, name)
             validated_dict['avatar_url'] = avatar_url
             auth_users.update(**validated_dict)

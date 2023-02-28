@@ -46,7 +46,7 @@ img.tw-user-medium {
     padding-top: 10px;
     padding-bottom: 10px;
     border-radius: 10px;
-    height: 340px;
+    height: 280px;
 }
 
 .tweet {
@@ -109,15 +109,15 @@ input[type=email]{
 }
 
 input[type=textarea]{
-    min-width: 500px;
+    min-width: 400px;
     min-height: 120px;
     padding: 10px;
     padding-bottom: 70px;
-    margin-left: -120px;
+    margin-left: -50px;
     border: 1px solid #ccc;
     border-radius: 8px;
-    margin-bottom: 10px;
-    margin-top: 15px;
+    margin-bottom: 15px;
+    /* margin-top: 15px; */
     overflow: hidden;
 }
 
@@ -131,7 +131,7 @@ input[type=submit]{
     font-weight: 500;
     background: #1da1f2;
     color: #fff;
-    margin-left: 5px;
+    margin-left: 150px;
 }
 
 
