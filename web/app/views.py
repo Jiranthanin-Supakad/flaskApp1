@@ -464,7 +464,7 @@ def lab13_edit():
 
         validated = True
         validated_dict = {}
-        valid_keys = ['email', 'name', 'password']
+        valid_keys = ['email', 'name']
         app.logger.debug('hello')
         # validate the input
         for key in result:
@@ -482,21 +482,21 @@ def lab13_edit():
             # code to validate and add user to database goes here
         app.logger.debug("validation done")
         if validated:
-            app.logger.debug('hello555555')
+            # app.logger.debug('hello555555')
             app.logger.debug(current_user.id)
             app.logger.debug('validated dict: ' + str(validated_dict))
             email = validated_dict['email']
             name = validated_dict['name']
-            password = validated_dict['password']
+            # password = validated_dict['password']
 
             auth_users = AuthUser.query.get(current_user.id)
-            validated_dict['password'] = generate_password_hash(password, method='sha256')
+            # validated_dict['password'] = generate_password_hash(password, method='sha256')
             avatar_url = gen_avatar_url(email, name)
             validated_dict['avatar_url'] = avatar_url
             auth_users.update(**validated_dict)
             db.session.commit()
             app.logger.debug('validated dict: ' + str(AuthUser.query.get(current_user.id)))
-        return redirect(url_for('lab13_profile'))
+        return redirect(url_for('lab11_microblog'))
     return render_template('lab13/edit.html')
 
 @app.route('/lab13/editprofile', methods=('GET', 'POST'))
