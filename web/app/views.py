@@ -114,8 +114,9 @@ def lab10_remove_contacts():
         id_ = result.get('id', '')
         try:
             contact = PrivateContact.query.get(id_)
-            db.session.delete(contact)
-            db.session.commit()
+            if AuthUser.owner_id == current_user.id:
+                db.session.delete(contact)
+                db.session.commit()
         except Exception as ex:
             app.logger.debug(ex)
             raise
@@ -209,8 +210,9 @@ def lab11_remove_contacts():
         id_ = result.get('id', '')
         try:
             contact = PrivateContactblog.query.get(id_)
-            db.session.delete(contact)
-            db.session.commit()
+            if AuthUser.owner_id == current_user.id:
+                db.session.delete(contact)
+                db.session.commit()
         except Exception as ex:
             app.logger.debug(ex)
             raise
